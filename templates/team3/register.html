@@ -1,0 +1,187 @@
+{% extends 'header.html' %}
+{% block content %}
+<div style="grid-column: 1 / -1; width: 100%;">
+    <div class="login-register-bg">
+        <div class="login-register-box">
+            <form id="registerForm">
+                <h2>用户注册</h2>
+                <p style="color:#888;">带 <span style="color:red">*</span> 为必填项</p>
+                <label>用户类型 <span style="color:red">*</span></label>
+                <select name="user_type" required>
+                    <option value="">请选择</option>
+                    <option value="教师">教师</option>
+                    <option value="学生">学生</option>
+                </select>
+                <label>用户名（工号/学号） <span style="color:red">*</span></label>
+                <input type="text" name="username" placeholder="工号/学号" required>
+                <label>密码 <span style="color:red">*</span></label>
+                <input type="password" name="password" placeholder="密码" required>
+                <label>英文名</label>
+                <input type="text" name="english_name" placeholder="英文名">
+                <label>中文名 <span style="color:red">*</span></label>
+                <input type="text" name="chinese_name" placeholder="中文名" required>
+                <label>性别</label>
+                <select name="gender">
+                    <option value="">请选择性别</option>
+                    <option value="男">男</option>
+                    <option value="女">女</option>
+                </select>
+                <label>手机号</label>
+                <input type="text" name="mobile_phone" placeholder="手机号">
+                <label>邮箱</label>
+                <input type="email" name="email" placeholder="邮箱">
+                <!-- 教师专属字段 -->
+                <div id="teacherFields" style="display:none;">
+                    <label>学院 <span style="color:red">*</span></label>
+                    <input type="text" name="college" placeholder="学院" required>
+                    <label>职称</label>
+                    <input type="text" name="title" placeholder="职称">
+                    <label>教师类型 <span style="color:red">*</span></label>
+                    <select name="teacher_type" required>
+                        <option value="">请选择教师类型</option>
+                        <option value="全职">全职</option>
+                        <option value="兼职">兼职</option>
+                    </select>
+                    <label>学位层次 <span style="color:red">*</span></label>
+                    <select name="degree_level" required>
+                        <option value="">请选择学位层次</option>
+                        <option value="博士">博士</option>
+                        <option value="硕士">硕士</option>
+                        <option value="学士">学士</option>
+                    </select>
+                    <label>状态 <span style="color:red">*</span></label>
+                    <select name="status" required>
+                        <option value="">请选择状态</option>
+                        <option value="在职">在职</option>
+                        <option value="离职">离职</option>
+                        <option value="退休">退休</option>
+                    </select>
+                    <label>备注</label>
+                    <input type="text" name="notes" placeholder="备注">
+                </div>
+                <!-- 学生专属字段 -->
+                <div id="studentFields" style="display:none;">
+                    <label>年级 <span style="color:red">*</span></label>
+                    <input type="text" name="grade" placeholder="年级" required>
+                    <label>导师姓名 <span style="color:red">*</span></label>
+                    <input type="text" name="supervisor" placeholder="导师姓名" required>
+                    <label>类别 <span style="color:red">*</span></label>
+                    <select name="category" required>
+                        <option value="">请选择类别</option>
+                        <option value="在读">在读</option>
+                        <option value="毕业">毕业</option>
+                    </select>
+                    <label>培养类型 <span style="color:red">*</span></label>
+                    <select name="program_type" required>
+                        <option value="">请选择培养类型</option>
+                        <option value="工学博士">工学博士</option>
+                        <option value="工程博士">工程博士</option>
+                        <option value="学术硕士">学术硕士</option>
+                        <option value="专业硕士">专业硕士</option>
+                    </select>
+                    <label>国籍</label>
+                    <input type="text" name="nationality" placeholder="国籍">
+                    <label class="checkbox-label"><input type="checkbox" name="is_part_time"> 非全日制</label>
+                    <label class="checkbox-label"><input type="checkbox" name="is_international"> 留学生</label>
+                    <label class="checkbox-label"><input type="checkbox" name="is_suspended"> 休学</label>
+                    <label>备注</label>
+                    <input type="text" name="notes" placeholder="备注">
+                </div>
+                <button type="submit">注册</button>
+                <div id="registerError" style="color:red;"></div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+const userTypeSelect = document.querySelector('select[name="user_type"]');
+userTypeSelect.onchange = function() {
+    const isTeacher = this.value === '教师';
+    const teacherFields = document.getElementById('teacherFields');
+    const studentFields = document.getElementById('studentFields');
+    teacherFields.style.display = isTeacher ? '' : 'none';
+    studentFields.style.display = !isTeacher ? '' : 'none';
+
+    // 动态设置 required
+    teacherFields.querySelectorAll('[required]').forEach(input => {
+        if (isTeacher) {
+            input.setAttribute('required', 'required');
+        } else {
+            input.removeAttribute('required');
+        }
+    });
+    studentFields.querySelectorAll('[required]').forEach(input => {
+        if (!isTeacher) {
+            input.setAttribute('required', 'required');
+        } else {
+            input.removeAttribute('required');
+        }
+    });
+};
+document.getElementById('registerForm').onsubmit = async function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const userType = form.user_type.value;
+    let url = '';
+    let body = {
+        username: form.username.value,
+        password: form.password.value,
+        user_type: userType,
+        english_name: form.english_name.value,
+        chinese_name: form.chinese_name.value,
+        gender: form.gender.value,
+        mobile_phone: form.mobile_phone.value,
+        email: form.email.value
+    };
+    if (userType === '教师') {
+        url = '{{ url_for("team3.register_teacher") }}';
+        Object.assign(body, {
+            college: form.college.value,
+            title: form.title.value,
+            teacher_type: form.teacher_type.value,
+            degree_level: form.degree_level.value,
+            status: form.status.value,
+            notes: form.notes.value
+        });
+    } else if (userType === '学生') {
+        url = '{{ url_for("team3.register_student") }}';
+        Object.assign(body, {
+            grade: form.grade.value,
+            supervisor: form.supervisor.value,
+            category: form.category.value,
+            program_type: form.program_type.value,
+            nationality: form.nationality.value,
+            is_part_time: form.is_part_time.checked,
+            is_international: form.is_international.checked,
+            is_suspended: form.is_suspended.checked,
+            notes: form.notes.value
+        });
+    }
+    const res = await fetch(url, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(body)
+    });
+    const data = await res.json();
+    if (res.ok) {
+        // 注册成功后自动登录
+        const loginRes = await fetch('{{ url_for("team3.login") }}', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                username: form.username.value,
+                password: form.password.value,
+                user_type: form.user_type.value
+            })
+        });
+        if (loginRes.ok) {
+            window.location.href = "{{ url_for('team3.user_center') }}";
+        } else {
+            document.getElementById('registerError').innerText = "注册成功但自动登录失败";
+        }
+    } else {
+        document.getElementById('registerError').innerText = data.msg;
+    }
+};
+</script>
+{% endblock %}

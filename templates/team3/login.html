@@ -1,0 +1,43 @@
+{% extends 'header.html' %}
+{% block content %}
+<div style="grid-column: 1 / -1; width: 100%;">
+    <div class="login-register-bg">
+        <div class="login-register-box">
+            <h2>用户登录</h2>
+            <form id="loginForm">
+                <input type="text" name="username" placeholder="用户名/工号/学号" required>
+                <input type="password" name="password" placeholder="密码" required>
+                <select name="user_type" required>
+                    <option value="教师">教师</option>
+                    <option value="学生">学生</option>
+                    <option value="图书管理员">图书管理员</option>
+                </select>
+                <button type="submit">登录</button>
+                <p class="switch-link">没有账号？<a href="{{ url_for('team3.register_page') }}">去注册</a></p>
+                <div id="loginError" class="form-error"></div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+document.getElementById('loginForm').onsubmit = async function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const res = await fetch('{{ url_for("team3.login") }}', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            username: form.username.value,
+            password: form.password.value,
+            user_type: form.user_type.value
+        })
+    });
+    const data = await res.json();
+    if (res.ok) {
+        window.location.href = "{{ url_for('team3.user_center') }}";
+    } else {
+        document.getElementById('loginError').innerText = data.msg;
+    }
+};
+</script>
+{% endblock %}

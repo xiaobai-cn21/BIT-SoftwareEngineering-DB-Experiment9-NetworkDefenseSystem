@@ -5,9 +5,10 @@
         <title></title>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/team1.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
     </head>
     <body>
-        <header>
+        <header class="header-bar">
             <div class="logo-container">
                 <img src="{{ url_for('static', filename='images/bit_logo.png') }}" class="school-logo">
             </div>
@@ -89,8 +90,34 @@
                         </ul>
                     </li>
                     <li><a href="{{ url_for('team1.page13') }}">国际合作</a></li>
+                    {% if session.get('user_id') %}
+                        <li><a href="{{ url_for('team2.page3') }}">图书馆</a></li>
+                        <li><a href="{{ url_for('team2.page7') }}">下载专区</a></li>
+                        <li><a href="#">用户帮助</a></li>
+                    {% endif %}
                     </ul>
                 </div>
+            </div>
+
+            <div class="user-area">
+                {% if not session.get('user_id') %}
+                    <a href="{{ url_for('team3.login_page') }}" class="login-btn">
+                        <img src="{{ url_for('static', filename='images/登录.svg') }}" alt="登录" class="login-icon">
+                        <span class="login-text">登录/注册</span>
+                    </a>
+                {% else %}
+                    <div class="user-dropdown">
+                        <span class="user-info">
+                            <img src="{{ url_for('static', filename='images/登录.svg') }}" alt="用户" class="user-icon">
+                            <span class="user-name">{{ session.get('chinese_name', '') }}({{ session.get('username', '') }})</span>
+                        </span>
+                        <div class="block-user"></div>
+                        <ul class="child user-menu">
+                            <li><a href="{{ url_for('team3.user_center') }}">用户中心</a></li>
+                            <li><a href="{{ url_for('team3.logout') }}">登出</a></li>
+                        </ul>
+                    </div>
+                {% endif %}
             </div>
         </header>
 

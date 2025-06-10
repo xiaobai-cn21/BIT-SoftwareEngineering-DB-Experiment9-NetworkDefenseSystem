@@ -9,7 +9,7 @@
 </head>
 <body>
      <!-- 研究所导航栏 -->
-      <header>
+      <header class="header-bar">
             <div class="logo-container">
                 <img src="{{ url_for('static', filename='images/bit_logo.png') }}" class="school-logo">
             </div>
@@ -91,8 +91,35 @@
                         </ul>
                     </li>
                     <li><a href="{{ url_for('team1.page13') }}">国际合作</a></li>
+                    {% if session.get('user_id') %}
+                        <li><a href="#">内部管理</a></li>
+                        <li><a href="{{ url_for('team2.page7') }}">下载专区</a></li>
+                        <li><a href="{{ url_for('team2.page3') }}">图书借阅</a></li>
+                        <li><a href="#">用户帮助</a></li>
+                    {% endif %}
                     </ul>
                 </div>
+            </div>
+
+            <div class="user-area">
+                {% if not session.get('user_id') %}
+                    <a href="{{ url_for('team3.login_page') }}" class="login-btn">
+                        <img src="{{ url_for('static', filename='images/登录.svg') }}" alt="登录" class="login-icon">
+                        <span class="login-text">登录/注册</span>
+                    </a>
+                {% else %}
+                    <div class="user-dropdown">
+                        <span class="user-info">
+                            <img src="{{ url_for('static', filename='images/登录.svg') }}" alt="用户" class="user-icon">
+                            <span class="user-name">{{ session.get('chinese_name', '') }}({{ session.get('username', '') }})</span>
+                        </span>
+                        <div class="block-user"></div>
+                        <ul class="child user-menu">
+                            <li><a href="{{ url_for('team3.user_center') }}">用户中心</a></li>
+                            <li><a href="{{ url_for('team3.logout') }}">登出</a></li>
+                        </ul>
+                    </div>
+                {% endif %}
             </div>
         </header>
      <div class="banner-container"></div>
@@ -106,8 +133,8 @@
                 <i class="fas fa-user"></i>
             </div>
             <div class="user-info">
-                <h3 id="user-name">姓名</h3>
-                   <p id="user-id">学号/工号</p>
+                 <h3 id="user-name">{{ session.user_name }}</h3>
+                   <p id="user-id">{{ session.username }}</p>
                        <div class="user-stats">
                            <div class="stat-item1">
                           <div class="stat-value" id="borrow-count">0</div>
@@ -145,51 +172,51 @@
                 <div class="book-grid">
                     <!-- 图书卡片 1 -->
                     <div class="book-card">
-                        <div class="book-cover">深度学习与人工智能</div>
+                        <div class="book-cover">轻量级JavaEE 企业应用实战（第3版）</div>
                         <div class="book-info">
-                            <div class="book-title">深度学习原理与实践</div>
+                            <div class="book-title">轻量级JavaEE 企业应用实战（第3版）——Struts2+Spring3+Hibernate整合开发</div>
                             <div class="book-meta">
-                                <span class="book-id">图书编号 B115</span>
+                                <span class="book-id">图书编号 B001</span>
                                 <span class="status-available">可借阅</span>
                             </div>
-                            <button class="borrow-btn">借阅图书</button>
+                            <button class="borrow-btn" data-id="B001" data-title="轻量级JavaEE 企业应用实战（第3版）——Struts2+Spring3+Hibernate整合开发">借阅图书</button>
                         </div>
                     </div>
 
                     <!-- 图书卡片 2 -->
                     <div class="book-card">
-                        <div class="book-cover">量子计算导论</div>
+                        <div class="book-cover">Java类库查询辞典</div>
                         <div class="book-info">
-                            <div class="book-title">量子计算：从基础到应用</div>
+                            <div class="book-title">Java类库查询辞典</div>
                             <div class="book-meta">
-                                <span class="book-id">图书编号 B115</span>
+                                <span class="book-id">图书编号 B002</span>
                                 <span class="status-available">可借阅</span>
                             </div>
-                            <button class="borrow-btn">借阅图书</button>
+                            <button class="borrow-btn" data-id="B002" data-title="Java类库查询辞典">借阅图书</button>
                         </div>
                     </div>
                     <!-- 图书卡片 1 -->
                     <div class="book-card">
-                        <div class="book-cover">深度学习与人工智能</div>
+                        <div class="book-cover">J2EE服务器端 高级编程</div>
                         <div class="book-info">
-                            <div class="book-title">深度学习原理与实践</div>
+                            <div class="book-title">J2EE服务器端 高级编程</div>
                             <div class="book-meta">
-                                 <span class="book-id">图书编号 B115</span>
+                                 <span class="book-id">图书编号 B003</span>
                                 <span class="status-available">可借阅</span>
                             </div>
-                            <button class="borrow-btn">借阅图书</button>
+                            <button class="borrow-btn" data-id="B003" data-title="J2EE服务器端 高级编程">借阅图书</button>
                         </div>
                     </div>
                     <!-- 图书卡片 1 -->
                     <div class="book-card">
-                        <div class="book-cover">深度学习与人工智能</div>
+                        <div class="book-cover">Java2应用开发指南</div>
                         <div class="book-info">
-                            <div class="book-title">深度学习原理与实践</div>
+                            <div class="book-title">Java2应用开发指南</div>
                             <div class="book-meta">
-                                <span class="book-id">图书编号 B115</span>
-                                <span class="status-available">可借阅</span>
+                                <span class="book-id">图书编号 B004</span>
+                                <span class="status-available">已借出</span>
                             </div>
-                            <button class="borrow-btn">借阅图书</button>
+                            <button class="borrow-btn disabled" data-id="B004" data-title="Java2应用开发指南" disabled>借阅图书</button>
                         </div>
                     </div>
                 </div>
@@ -232,7 +259,7 @@
     $(document).ready(function() {
         // 为搜索表单添加ID
         $('.search-form').attr('id', 'search-form');
-
+        $('.record-container').hide();
         // 处理搜索表单提交
         $(document).ready(function () {
             // 直接使用表单ID绑定事件
@@ -253,8 +280,6 @@
                 }
 
                 // 更新用户信息
-                $('#user-name').text(sessionStorage.getItem('user_name') || '用户');
-                $('#user-id').text(sessionStorage.getItem('user_id') || '未登录');
                 $('#borrow-count').text(data.total);
 
                 // 更新借阅记录表格
@@ -273,8 +298,8 @@
                     const row = `
                     <tr>
                         <td>${record.title}</td>
-                        <td>${record.borrow_date}</td>
-                        <td>${record.due_date}</td>
+                        <td>${record.borrow_time}</td>
+                        <td>${record.due_time}</td>
                         <td><span class="status-badge ${statusClass}">${record.status}</span></td>
                     </tr>`;
                     tbody.append(row);
@@ -308,7 +333,8 @@
             // 借阅按钮事件
             $(document).on('click', '.borrow-btn:not(.disabled)', function () {
                 const bookId = $(this).data('id');
-                borrowBook(bookId, $(this));
+                const title = $(this).data('title');
+                borrowBook(bookId,title, $(this));
             });
 
             // 图书搜索函数
@@ -382,10 +408,10 @@
                 <div class="book-info">
                     <div class="book-title">${book.title}</div>
                     <div class="book-meta">
-                        <span class="book-id">图书编号 ${book.book_id}</span>
+                        <span class="bookId">图书编号 ${book.book_id}</span>
                         <span class="status-available">${statusText}</span>
                     </div>
-                    <button class="${buttonClass}" ${disabledAttr} data-id="${book.book_id}">
+                    <button class="${buttonClass}" ${disabledAttr} data-id="${book.book_id}" data-title="${book.title}">
                         ${buttonText}
                     </button>
                 </div>
@@ -411,14 +437,14 @@
             }
 
             // 借阅图书函数
-            function borrowBook(bookId, buttonElement) {
+            function borrowBook(bookId,title, buttonElement) {
                 const originalText = buttonElement.text();
                 buttonElement.text('处理中...').prop('disabled', true);
 
                 $.ajax({
                     url: '{{ url_for("team2.page6") }}',
                     type: 'POST',
-                    data: {book_id: bookId},
+                    data: {book_id: bookId,title: title},
                      success: function(response) {
             if (response.success) {
                 // 更新按钮状态

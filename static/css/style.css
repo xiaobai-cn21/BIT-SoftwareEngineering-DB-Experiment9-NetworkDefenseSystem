@@ -1,0 +1,437 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+
+
+    .nav {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      
+    }
+
+    .nav > li {
+      position: relative;
+      margin: 0 20px;
+    }
+
+    .nav > li > a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      padding: 8px 12px;
+      display: block;
+    }
+
+    .nav > li > a:hover {
+      opacity: 0.5;
+    }
+
+    .nav li ul {
+      position: absolute;
+      top: 40px;
+      left: 0;
+      display: none;
+      list-style: none;
+      background-color: #fff;
+      padding: 5px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      z-index: 10;
+    }
+
+    .nav li:hover > ul {
+      display: block;
+    }
+
+    .nav li ul li {
+      width: 150px;
+      text-align: center;
+    }
+
+    .nav li ul li a {
+      display: block;
+      padding: 10px;
+      color: black;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .nav li ul li a:hover {
+      color: #3d3bb8;
+    }
+
+    /* Sub-sub menu */
+    .nav li ul li ul {
+      top: 0;
+      left: 150px;
+      display: none;
+    }
+
+    .nav li ul li:hover > ul {
+      display: block;
+    }
+
+header {
+    width: 100%;
+    height: 68px;
+    position: fixed;
+    display: grid;
+    grid-template-columns: 4fr 6fr;
+    background-color: #3d3bb8;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.school-logo {
+    width: 400px;
+    height: 48px;
+}
+
+.menu-container {
+    display: grid;
+    grid-template-rows: 3fr 7fr;
+}
+
+.banner-container{
+    position: relative;
+    background-image: url('../images/second_banner.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 290px;
+}
+
+#mini-menu {
+    padding: 2px;
+    position: absolute;
+    background-color: #208fda;
+    bottom: 0;
+}
+
+
+/* 通用卡片样式 */
+.card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 85%;
+    margin: 0 auto 20px; /* 居中并添加底部间距 */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* hello卡片特定样式 */
+.hello {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: left;
+    color: black;
+    padding: 20px;
+}
+.current-time {
+    text-align: left;
+    color: #666;
+    margin-top: 10px;
+    font-size: 18px;
+    padding: 20px;
+}
+
+
+/* 链接容器卡片样式 */
+.link-container {
+    display: flex;
+    justify-content: center;
+    gap: 10%; /* 链接之间的间距 */
+    flex-wrap: wrap; /* 小屏幕时换行 */
+}
+
+.link-block {
+    text-decoration: none;
+    color: #333;
+    flex: 1;
+    min-width: 200px; /* 最小宽度 */
+    max-width: 500px; /* 最大宽度 */
+}
+
+.block-content {
+    background-color: rgb(45, 58, 177);
+    border-radius: 30px;
+    padding: 150px;
+    text-align: center;
+    transition: all 0.3s ease;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.block-content:hover {
+    background-color: #2d2b8f;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.block-title {
+    font-size: 24px;
+    font-weight: white;
+    color: #fff;
+}
+
+/* 段落文本样式 */
+p {
+    text-align: center;
+    margin-bottom: 50px;
+    color: #666;
+}
+ 
+ .section-title {
+    color: #3d3bb8; /* 标题颜色 */
+    margin-bottom: 10px;
+    border-bottom: #3d3bb8;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    font-size: 30px;
+    font-weight: bolder;
+
+}
+ .title-card{
+    align-items: center;
+    padding-top: 128px;
+    padding-bottom: 5px;
+    background-color: white;
+    border-bottom: #3d3bb8;
+
+    width: 85%;
+    margin: 0 auto 20px; /* 居中并添加底部间距 */
+    box-sizing: border-box;
+ }
+
+
+
+
+.user-card {
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding-top: 148px;
+    padding: 80px;
+    background-color: white;
+    width: 85%;
+    margin: 0 auto 20px; /* 居中并添加底部间距 */
+    box-sizing: border-box;
+}
+
+.avatar {
+    margin-right: 20px;
+}
+ 
+.avatar img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background-color: #3d3bb8; /* 示例背景色 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+}
+ 
+.user-info h2 {
+    margin: 0;
+    color: #3d3bb8;
+}
+ 
+.user-info p {
+    margin: 5px 0;
+    color: #666;
+}
+
+
+.uploads-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 85%;
+    padding-top: 140px;
+    box-sizing: border-box;
+    display: flex; /* 添加flex布局 */
+    flex-direction: column; /* 垂直排列 */
+    align-items: center; /* 水平居中 */
+    text-align: center;
+}
+
+.section-title {
+    margin-bottom: 30px; /* 标题与表单的间距 */
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 100px;
+    width: 800px;
+    height: 300px;
+    margin-bottom: 100px;
+}
+
+
+.upload-form input[type="file"],
+.upload-form select {
+    margin-bottom: 15px;
+    padding: 20px;
+    width: 80%;
+    border: 1px solid #ccc;
+    border-radius: 9px;
+}
+
+.upload-form input[type="submit"] {
+    background-color: #3d3bb8;
+    color: white;
+    border: none;
+    padding: 20px;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.upload-form input[type="submit"]:hover {
+    background-color: #252472;
+}
+
+
+
+.file-card{
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 85%;
+    margin: 0 auto 20px; /* 居中并添加底部间距 */
+    padding: 20px;
+    box-sizing: border-box;
+    padding-top: 140px;
+}
+
+.file-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 auto 20px;
+    width: 400px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
+ 
+.file-list li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+ 
+.file-list li:last-child {
+    border-bottom: none;
+}
+ 
+.download-link {
+    color: #3d3bb8;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+ 
+.download-link:hover {
+    color: #2b29b8;
+}
+ 
+.return-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: #3d3bb8;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+ 
+.return-link:hover {
+    color: #282690;
+}
+
+.category-card{
+  background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 85%;
+    margin: 0 auto 20px; /* 居中并添加底部间距 */
+    padding: 20px;
+    box-sizing: border-box;
+    padding-top: 140px;
+     padding-bottom:200px;
+
+}
+
+.category-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 50px; /* 增加上下边距 */
+    max-width: 90%; /* 改为最大宽度以适应响应式 */
+    display: flex; /* 改为flex布局实现横向排列 */
+    flex-wrap: wrap; /* 允许换行 */
+    justify-content: center; /* 水平居中 */
+    gap: 30px; /* 项与项之间的间距 */
+    background-color: transparent; /* 移除背景色 */
+    box-shadow: none; /* 移除阴影 */
+}
+
+.category-list li {
+    padding-top: 40px; 
+    padding-bottom: 40px;
+    border-bottom: none; /* 移除底部边框 */
+    display: flex;
+    min-width: 200px; /* 最小宽度 */
+}
+
+.category-link {
+    color: white;
+    padding-top: 40px; 
+    padding-bottom: 40px;
+    text-decoration: none;
+    transition: all 0.3s;
+    font-weight: bold;
+    background-color: #3d3bb8; 
+    border-radius: 6px; /* 圆角 */
+    display: inline-block;
+    width: 100%; /* 填满li的宽度 */
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.category-link:hover {
+    color: white;
+    background-color: #28267a; 
+    transform: translateY(-3px); /* 轻微上浮效果 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+/* 确保提交按钮可点击 */
+.upload-form input[type="submit"] {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+
+/* 确保表单元素可见 */
+#studentFields, #teacherFields {
+    display: none; /* 默认隐藏，JS会控制显示 */
+    opacity: 1 !important;
+}

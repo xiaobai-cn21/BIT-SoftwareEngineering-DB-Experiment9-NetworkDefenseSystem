@@ -1,9 +1,11 @@
-from db import get_db_connection
+from db import get_db_connection_baiqinyu
 from .tableCreator import tableCreator
 
 def getInformation(sql_query, params=None):
+    conn = None
+    cur = None
     try:
-        conn = get_db_connection()
+        conn = get_db_connection_baiqinyu()
         cur = conn.cursor()
         cur.execute(sql_query, params or ())
         
@@ -22,6 +24,7 @@ def getInformation(sql_query, params=None):
             cur.close()
         if conn:
             conn.close()
+
 
 if __name__ == "__main__":
     tables = execute_sql_query("SELECT * FROM information_schema.tables;")

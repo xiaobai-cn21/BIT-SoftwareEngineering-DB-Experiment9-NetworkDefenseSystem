@@ -1,0 +1,144 @@
+
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文件上传服务</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+     <header>
+            <div class="logo-container">
+                <img src="{{ url_for('static', filename='images/bit_logo.png') }}" class="school-logo">
+            </div>
+
+            <div class="menu-container">
+                <div class="option-container">
+
+                </div>
+
+                <div class="menu">
+                    <ul class="nav">
+                    <li><a href="#">首页</a></li>
+                    <li>
+                        <a>关于我们</a>
+                        <ul>
+                        <li><a href="#">研究所简介</a></li>
+                        <li>
+                            <a>师资队伍</a>
+                            <ul>
+                            <li><a href=#>全职教师</a></li>
+                            <li><a href=#>兼职教师</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">学生信息</a>
+                            <ul>
+                            <li><a href=#>在读学生</a></li>
+                            <li><a href=#>毕业学生</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">联系我们</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">动态消息</a>
+                        <ul>
+                        <li><a href="#">新闻动态</a></li>
+                        <li><a href="#">通知通告</a></li>
+                        <li><a href="#">学术活动</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a>教学科研</a>
+                        <ul>
+                        <li><a href=#>教学工作</a></li>
+                        <li><a href=#>科研工作</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">研究成果</a>
+                        <ul>
+                        <li>
+                            <a href="#">教学</a>
+                            <ul>
+                            <li><a href=#>成果</a></li>
+                            <li><a href=#>论文</a></li>
+                            <li><a href=#>教材</a></li>
+                            <li><a href=#>教改</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">科研</a>
+                            <ul>
+                            <li><a href="#">成果</a></li>
+                            <li><a href="#">论文</a></li>
+                            <li><a href="#">专利</a></li>
+                            <li><a href="#">著作权</a></li>
+                            </ul>
+                        </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">招生信息</a>
+                        <ul>
+                        <li><a href="#">本科生</a></li>
+                        <li><a href="#">硕士生</a></li>
+                        <li><a href="#">博士生</a></li>
+                        <li><a href="#">留学生</a></li>
+                        </ul>
+                    </li>
+                    <li><a href=#>国际合作</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+
+    <div class="content">
+        <div class="title-card">
+            <div class="section-title">管理员上传资料专区</div>
+        </div>
+
+
+        <div class="user-card">
+
+            <div class="avatar">
+                <img src="{{ url_for('static', filename='images/user.png') }}" alt="用户头像">
+            </div>
+            <div class="user-info">
+                <h2>姓名</h2>
+                <p>学号/工号</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+ <div class="card">
+    <div class="hello">你好！管理员</div>
+    <div class="current-time" id="currentTime"></div>
+</div>
+
+<div class="card">
+    <p>请选择</p>
+    <div class="link-container">
+        <a href="/uploads" class="link-block">
+            <div class="block-content">
+                <div class="block-title">上传文件</div>
+            </div>
+        </a>
+
+        <a href="/download_all" class="link-block">
+            <div class="block-content">
+                <div class="block-title">查看文件</div>
+            </div>
+        </a>
+    </div>
+</div>
+
+<script src="/static/time.js"></script>
+</body>
+</html>

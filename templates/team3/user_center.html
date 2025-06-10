@@ -1,0 +1,52 @@
+{% extends 'header.html' %}
+{% block content %}
+<div style="grid-column: 1 / -1; width: 100%;">
+    <div class="user-center-box">
+        <div class="user-center-avatar">
+            <img src="{{ url_for('static', filename='images/登录.svg') }}" alt="用户头像">
+        </div>
+        <div class="user-center-info">
+            <div class="user-center-name">{{ session.get('chinese_name', session.get('username')) }}</div>
+            <div class="user-center-type">{{ session.get('user_type') }}</div>
+        </div>
+        <hr class="user-center-divider">
+        <div class="user-center-details">
+            <div class="user-detail-row"><span class="user-detail-label">用户名：</span><span class="user-detail-value">{{ session.get('username', '-') }}</span></div>
+            <div class="user-detail-row"><span class="user-detail-label">英文名：</span><span class="user-detail-value">{{ session.get('english_name', '-') }}</span></div>
+            <div class="user-detail-row"><span class="user-detail-label">性别：</span><span class="user-detail-value">{{ session.get('gender', '-') }}</span></div>
+            <div class="user-detail-row"><span class="user-detail-label">手机号：</span><span class="user-detail-value">{{ session.get('mobile_phone', '-') }}</span></div>
+            <div class="user-detail-row"><span class="user-detail-label">邮箱：</span><span class="user-detail-value">{{ session.get('email', '-') }}</span></div>
+            {% if session.get('user_type') == 'teacher' %}
+                <div class="user-detail-row"><span class="user-detail-label">学院：</span><span class="user-detail-value">{{ session.get('college', '-') }}</span></div>
+                <div class="user-detail-row"><span class="user-detail-label">职称：</span><span class="user-detail-value">{{ session.get('title', '-') }}</span></div>
+                <div class="user-detail-row"><span class="user-detail-label">学位层次：</span><span class="user-detail-value">{{ session.get('degree_level', '-') }}</span></div>
+                <div class="user-detail-row"><span class="user-detail-label">状态：</span><span class="user-detail-value">{{ session.get('status', '-') }}</span></div>
+                <div class="user-detail-row"><span class="user-detail-label">教师类型：</span><span class="user-detail-value">{{ session.get('teacher_type', '-') }}</span></div>
+                <div class="user-detail-row"><span class="user-detail-label">备注：</span><span class="user-detail-value">{{ session.get('notes', '-') }}</span></div>
+            {% elif session.get('user_type') == 'student' %}
+                <div class="user-detail-row"><span class="user-detail-label">年级：</span><span class="user-detail-value">{{ session.get('grade', '-') }}</span></div>
+                <div class="user-detail-row"><span class="user-detail-label">类别：</span><span class="user-detail-value">{{ session.get('category', '-') }}</span></div>
+                <div class="user-detail-row"><span class="user-detail-label">培养类型：</span><span class="user-detail-value">{{ session.get('program_type', '-') }}</span></div>
+                <div class="user-detail-row"><span class="user-detail-label">导师姓名：</span><span class="user-detail-value">{{ session.get('supervisor', '-') }}</span></div>
+                <div class="user-detail-row"><span class="user-detail-label">国籍：</span><span class="user-detail-value">{{ session.get('nationality', '-') }}</span></div>
+                <div class="user-detail-row"><span class="user-detail-label">非全日制：</span><span class="user-detail-value">{{ '是' if session.get('is_part_time') else '否' }}</span></div>
+                <div class="user-detail-row"><span class="user-detail-label">留学生：</span><span class="user-detail-value">{{ '是' if session.get('is_international') else '否' }}</span></div>
+                <div class="user-detail-row"><span class="user-detail-label">休学：</span><span class="user-detail-value">{{ '是' if session.get('is_suspended') else '否' }}</span></div>
+                <div class="user-detail-row"><span class="user-detail-label">备注：</span><span class="user-detail-value">{{ session.get('notes', '-') }}</span></div>
+            {% elif session.get('user_type') == 'admin' %}
+                ...图书管理员信息...
+            {% endif %}
+        </div>
+        <div class="user-center-status">
+            <span class="user-center-badge">已签到</span>
+        </div>
+        <button id="logoutBtn" class="logout-btn">登出</button>
+    </div>
+</div>
+
+<script>
+document.getElementById('logoutBtn').onclick = function() {
+    window.location.href = "{{ url_for('team3.logout') }}";
+};
+</script>
+{% endblock %}

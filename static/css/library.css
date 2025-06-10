@@ -510,7 +510,7 @@ header {
         }
  /* 借阅记录样式 */
         .record-container {
-            display: none;
+             display: block;
         }
 
         .record-list {
