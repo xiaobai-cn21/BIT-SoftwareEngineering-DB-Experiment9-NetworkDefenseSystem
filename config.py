@@ -1,18 +1,15 @@
-# config.py
-DB_CONFIG2 = {
-    "host": "1.92.123.57",
-    "port": 26000,
-    "database": "postgres",
-    "user": "daniel",
-    "password": "Vivadios1@",
-}
+from dotenv import load_dotenv
+import os
+
+# 加载.env文件中的变量到os.environ
+load_dotenv()
 
 DB_CONFIG = {
-    'host': '1.92.77.154', 
-    'port': 26000,
-    'database': 'network_security_research',
-    'user': 'db_admin',
-    'password': 'DBAdmin@SuperSecure!2024' 
+    'host': os.environ.get('DB_HOST'), 
+    'port': os.environ.get('DB_PORT'),
+    'database': os.environ.get('DB_NAME'),
+    'user': os.environ.get('DB_USER'),
+    'password': os.environ.get('DB_PASSWORD'), 
 }
 
 import os

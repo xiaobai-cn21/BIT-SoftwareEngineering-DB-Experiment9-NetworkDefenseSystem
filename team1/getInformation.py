@@ -1,11 +1,11 @@
-from db import get_db_connection_baiqinyu
+from db import get_db_connection
 from .tableCreator import tableCreator
 
 def getInformation(sql_query, params=None):
     conn = None
     cur = None
     try:
-        conn = get_db_connection_baiqinyu()
+        conn = get_db_connection()
         cur = conn.cursor()
         cur.execute(sql_query, params or ())
         

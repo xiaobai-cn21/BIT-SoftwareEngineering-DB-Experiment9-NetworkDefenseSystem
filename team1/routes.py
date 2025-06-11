@@ -4,7 +4,9 @@ from .getInformation import getInformation
 team1_bp = Blueprint('team1', __name__)
 
 # 动态数据库 schema
-schema = "shiyan3"
+user_schema = "user_schema"
+education_schema = "education_schema"
+achievement_schema = "achievement_schema"
 
 @team1_bp.route('/fullTimeTeacher')
 def page1():
@@ -57,9 +59,9 @@ def page7():
     sqlQuery = f"""
         SELECT c.course_id, c.course_name, c.course_id, c.level,
                STRING_AGG(t.name, ', ') AS teachers
-        FROM {schema}.course c
-        LEFT JOIN {schema}.teaching_work tw ON c.course_id = tw.course_id
-        LEFT JOIN {schema}.teacher t ON tw.teacher_id = t.teacher_id
+        FROM {education_schema}.course c
+        LEFT JOIN {education_schema}.teaching_work tw ON c.course_id = tw.course_id
+        LEFT JOIN {user_schema}.teacher t ON tw.teacher_id = t.teacher_id
         GROUP BY c.course_id, c.course_name, c.level;
     """
     courseInfo = getInformation(sqlQuery)
@@ -68,8 +70,8 @@ def page7():
 @team1_bp.route('/teacherReasearch')
 def page8():
     sqlQuery = f"""
-        SELECT * FROM {schema}.research_work r
-        INNER JOIN {schema}.teacher t ON r.teacher_id = t.teacher_id;
+        SELECT * FROM {education_schema}.research_work r
+        INNER JOIN {user_schema}.teacher t ON r.teacher_id = t.teacher_id;
     """
     queryInfo = getInformation(sqlQuery)
     return render_template('team1/teacher_research.html', queryInfo=queryInfo)
@@ -80,7 +82,7 @@ def page9():
 
 @team1_bp.route('/patentResult')
 def page10():
-    sqlQuery = f"SELECT * FROM {schema}.patent;"
+    sqlQuery = f"SELECT * FROM {achievement_schema}.patent;"
     queryInfo = getInformation(sqlQuery)
     return render_template('team1/patent_result.html', patentInfo=queryInfo)
 
@@ -88,8 +90,8 @@ def page10():
 def page11():
     sqlQuery = f"""
         SELECT t.name, STRING_AGG(tb.name, ',') AS writers
-        FROM {schema}.textbook t
-        JOIN {schema}.teacher_textbook tb ON tb.textbook_id = t.textbook_id
+        FROM {achievement_schema}.textbook t
+        JOIN {achievement_schema}.teacher_textbook tb ON tb.textbook_id = t.textbook_id
         GROUP BY t.name;
     """
     queryInfo = getInformation(sqlQuery)
