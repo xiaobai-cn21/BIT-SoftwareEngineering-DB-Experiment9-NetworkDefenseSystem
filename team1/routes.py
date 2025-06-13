@@ -107,5 +107,11 @@ def page13():
 
 @team1_bp.route('/paper')
 def page14():
-    sqlQuery = f""
-    return render_template('team1/education_paper.html')
+    sqlQuery = f"""
+    SELECT *
+    FROM  {achievement_schema}.paper p
+    INNER JOIN {user_schema}.student s
+    ON p.student_id = s.student_id
+    """
+    queryInfo = getInformation(sqlQuery)
+    return render_template('team1/education_paper.html', paperInfo=queryInfo)
