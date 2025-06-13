@@ -1,129 +1,17 @@
-<!DOCTYPE html>
-<html lang="zh">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>研究所图书馆借阅系统</title>
+
+
+
+{% extends 'header.html' %}
+
+{% block title %}研究所图书馆借阅系统{% endblock %}
+
+{% block style %} 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/library.css') }}">
-</head>
-<body>
-     <!-- 研究所导航栏 -->
-      <header class="header-bar">
-            <div class="logo-container">
-                <img src="{{ url_for('static', filename='images/bit_logo.png') }}" class="school-logo">
-            </div>
+{% endblock %}
 
-            <div class="menu-container">
-                <div class="option-container">
-
-                </div>
-
-                <div class="menu">
-                    <ul class="nav">
-                    <li><a href="#">首页</a></li>
-                    <li>
-                        <a>关于我们</a>
-                        <ul>
-                        <li><a href="#">研究所简介</a></li>
-                        <li>
-                            <a>师资队伍</a>
-                            <ul>
-                            <li><a href="{{ url_for('team1.page1') }}">全职教师</a></li>
-                            <li><a href="{{ url_for('team1.page2') }}">兼职教师</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">学生信息</a>
-                            <ul>
-                            <li><a href="{{ url_for('team1.page3') }}">在读学生</a></li>
-                            <li><a href="{{ url_for('team1.page5') }}">毕业学生</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">联系我们</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">动态消息</a>
-                        <ul>
-                        <li><a href="#">新闻动态</a></li>
-                        <li><a href="#">通知通告</a></li>
-                        <li><a href="#">学术活动</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a>教学科研</a>
-                        <ul>
-                        <li><a href="{{ url_for('team1.page7') }}">教学工作</a></li>
-                        <li><a href="{{ url_for('team1.page8') }}">科研工作</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">研究成果</a>
-                        <ul>
-                        <li>
-                            <a href="#">教学</a>
-                            <ul>
-                            <li><a href="{{ url_for('team1.page9') }}">成果</a></li>
-                            <li><a href="{{ url_for('team1.page10') }}">论文</a></li>
-                            <li><a href="{{ url_for('team1.page11') }}">教材</a></li>
-                            <li><a href="{{ url_for('team1.page12') }}">教改</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">科研</a>
-                            <ul>
-                            <li><a href="#">成果</a></li>
-                            <li><a href="#">论文</a></li>
-                            <li><a href="#">专利</a></li>
-                            <li><a href="#">著作权</a></li>
-                            </ul>
-                        </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">招生信息</a>
-                        <ul>
-                        <li><a href="#">本科生</a></li>
-                        <li><a href="#">硕士生</a></li>
-                        <li><a href="#">博士生</a></li>
-                        <li><a href="#">留学生</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="{{ url_for('team1.page13') }}">国际合作</a></li>
-                    {% if session.get('user_id') %}
-                        <li><a href="#">内部管理</a></li>
-                        <li><a href="{{ url_for('team2.page7') }}">下载专区</a></li>
-                        <li><a href="{{ url_for('team2.page3') }}">图书借阅</a></li>
-                        <li><a href="#">用户帮助</a></li>
-                    {% endif %}
-                    </ul>
-                </div>
-            </div>
-
-            <div class="user-area">
-                {% if not session.get('user_id') %}
-                    <a href="{{ url_for('team3.login_page') }}" class="login-btn">
-                        <img src="{{ url_for('static', filename='images/登录.svg') }}" alt="登录" class="login-icon">
-                        <span class="login-text">登录/注册</span>
-                    </a>
-                {% else %}
-                    <div class="user-dropdown">
-                        <span class="user-info">
-                            <img src="{{ url_for('static', filename='images/登录.svg') }}" alt="用户" class="user-icon">
-                            <span class="user-name">{{ session.get('chinese_name', '') }}({{ session.get('username', '') }})</span>
-                        </span>
-                        <div class="block-user"></div>
-                        <ul class="child user-menu">
-                            <li><a href="{{ url_for('team3.user_center') }}">用户中心</a></li>
-                            <li><a href="{{ url_for('team3.logout') }}">登出</a></li>
-                        </ul>
-                    </div>
-                {% endif %}
-            </div>
-        </header>
-     <div class="banner-container"></div>
-    <!-- 图书借阅系统内容 -->
+{% block content %}
+       <!-- 图书借阅系统内容 -->
     <div class="content-area">
         <h1 class="page-title">研究所图书馆借阅系统</h1>
 
@@ -468,5 +356,4 @@
                 });}
     }); // 修复：添加缺失的结束括号
     </script>
-</body>
-</html>
+{% endblock %}
