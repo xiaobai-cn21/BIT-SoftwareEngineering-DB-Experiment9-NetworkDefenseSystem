@@ -1,29 +1,29 @@
-{% extends 'header.html' %}
+{% extends 'university_basic.html' %}
 
-{% block content %}
-<div class="sidebar">
-        <div class="sidebar-header">学生信息</div>
-        <ul class="sidebar-menu">
-            <li class="menu-item">在读学生信息 </li>
-            <li class="menu-item">毕业学生信息</li>
-        </ul>
-</div>
-
-<div class="main-content">
-    <h3>毕业了学生信息</h3>
-    <hr class="sep-line">
-
-    <div class="student-content">
-        {% for student in studentInfo %}
-        <a href="{{ url_for('team1.page6', student_id = student.student_id) }}">
-            <div class="student-card">
-                <img class="student-photo"src="../../static/images/teacherExample.jpg">
-                <p class="student-name">{{ student.name }}</p>
-            </div>
-        </a>
-        
-        {% endfor %}
-    </div>
-
-</div>
+{% block title %}毕业学生信息{% endblock %}
+{% block menu_name%}学生信息{% endblock %}
+{% block menu_content %} 
+    <li class="menu-item">在读学生信息</li>
+    <li class="menu-item">毕业学生信息</li>
 {% endblock %}
+
+{% block main_content %}
+    <div class="main-content">
+        <h3>毕业了学生信息</h3>
+        <hr class="sep-line">
+
+        <div class="student-content">
+            {% for student in studentInfo %}
+            <a href="{{ url_for('team1.page6', student_id = student.student_id) }}">
+                <div class="student-card">
+                    <img class="student-photo"src="../../static/images/teacherExample.jpg">
+                    <p class="student-name">{{ student.name }}</p>
+                </div>
+            </a>
+            
+            {% endfor %}
+        </div>
+
+    </div>
+{% endblock %}
+

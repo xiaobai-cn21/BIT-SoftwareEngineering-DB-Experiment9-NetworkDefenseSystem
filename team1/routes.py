@@ -11,8 +11,8 @@ achievement_schema = "achievement_schema"
 @team1_bp.route('/fullTimeTeacher')
 def page1():
     sqlQuery = f"""
-        SELECT * FROM {schema}.teacher t 
-        INNER JOIN {schema}.full_time_teacher f ON t.teacher_id = f.teacher_id;
+        SELECT * FROM {user_schema}.teacher t 
+        INNER JOIN {user_schema}.full_time_teacher f ON t.teacher_id = f.teacher_id;
     """
     teacherInfo = getInformation(sqlQuery)
     return render_template('team1/full_time_teacher.html', teacherInfo=teacherInfo)
@@ -20,35 +20,35 @@ def page1():
 @team1_bp.route('/partTimeTeacher')
 def page2():
     sqlQuery = f"""
-        SELECT * FROM {schema}.teacher t
-        INNER JOIN {schema}.part_time_teacher f ON t.teacher_id = f.teacher_id;
+        SELECT * FROM {user_schema}.teacher t
+        INNER JOIN {user_schema}.part_time_teacher f ON t.teacher_id = f.teacher_id;
     """
     teacherInfo = getInformation(sqlQuery)
     return render_template('team1/part_time_teacher.html', teacherInfo=teacherInfo)
 
 @team1_bp.route('/actualStudents')
 def page3():
-    sqlQuery = f"SELECT * FROM {schema}.student;"
+    sqlQuery = f"SELECT * FROM {user_schema}.student;"
     studentInfo = getInformation(sqlQuery)
     return render_template('team1/actual_students.html', studentInfo=studentInfo)
 
 @team1_bp.route('/student_card/<int:student_id>')
 def page4(student_id):
-    sqlQuery = f"SELECT * FROM {schema}.student WHERE student_id = %s;"
+    sqlQuery = f"SELECT * FROM {user_schema}.student WHERE student_id = %s;"
     student_info = getInformation(sqlQuery, (student_id,))
     return render_template('team1/student_card.html', student_info=student_info[0])
 
 @team1_bp.route('/gradStudents')
 def page5():
-    sqlQuery = f"SELECT * FROM {schema}.student WHERE category='毕业';"
+    sqlQuery = f"SELECT * FROM {user_schema}.student WHERE category='毕业';"
     studentInfo = getInformation(sqlQuery)
     return render_template('team1/graduated_students.html', studentInfo=studentInfo)
 
 @team1_bp.route('/gradStudent_card/<int:student_id>')
 def page6(student_id):
     sqlQuery = f"""
-        SELECT * FROM {schema}.student s
-        INNER JOIN {schema}.graduated_student g ON s.student_id = g.student_id 
+        SELECT * FROM {user_schema}.student s
+        INNER JOIN {user_schema}.graduated_student g ON s.student_id = g.student_id 
         WHERE s.student_id = %s;
     """
     student_info = getInformation(sqlQuery, (student_id,))
@@ -104,3 +104,8 @@ def page12():
 @team1_bp.route('/international_information')
 def page13():
     return render_template('team1/international_information.html')
+
+@team1_bp.route('/paper')
+def page14():
+    sqlQuery = f""
+    return render_template('team1/education_paper.html')

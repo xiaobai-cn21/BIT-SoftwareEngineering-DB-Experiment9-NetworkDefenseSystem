@@ -1,0 +1,19 @@
+{% extends 'header.html' %}
+
+{% block title %}uwu{% endblock %}
+
+{% block content %} 
+    <div class="content">
+        <div class="sidebar">
+            <div class="sidebar-header">{% block menu_name %} {% endblock %}</div>
+            <ul class="sidebar-menu">
+                {% block menu_content %}{% endblock %}
+
+            </ul>
+        </div>
+        {% block main_content%}
+
+        {% endblock %}
+    </div>
+    
+{% endblock %}

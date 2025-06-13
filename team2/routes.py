@@ -79,13 +79,16 @@ def page5():
 
         # 查询借阅记录
         query ="""
-        SELECT book.title, borrow_record.borrow_time, borrow_record.due_time,
-           CASE WHEN borrow_record.borrow_time IS NOT NULL THEN '已归还'
-                WHEN CURRENT_DATE > borrow_record.due_time THEN '逾期'
-                ELSE '借阅中' END AS status
-                FROM library_schema.borrow_record
-         JOIN library_schema.book ON borrow_record.title = book.title
-         WHERE borrow_record.user_name = %s
+    SELECT book.title, 
+           TO_CHAR(borrow_record.borrow_time, 'YYYY-MM-DD HH24:MI:SS') AS borrow_time,
+           TO_CHAR(borrow_record.due_time, 'YYYY-MM-DD HH24:MI:SS') AS due_time,
+           CASE 
+               WHEN CURRENT_DATE < borrow_record.due_time THEN '借阅中'
+               ELSE '已归还' 
+           END AS status
+    FROM library_schema.borrow_record
+    JOIN library_schema.book ON borrow_record.title = book.title
+    WHERE borrow_record.user_name = %s
     ORDER BY borrow_record.borrow_time DESC
     """
         cur.execute(query, (user_name,))
@@ -145,7 +148,6 @@ def page6():
 
     except Exception as e:
         return jsonify({'success': False, 'message': str(e)}), 500
-
     finally:
         cur.close()
         conn.close()

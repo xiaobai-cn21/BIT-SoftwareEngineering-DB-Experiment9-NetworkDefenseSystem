@@ -1,23 +1,14 @@
-{% extends 'header.html' %}
+{% extends 'university_basic.html' %}
 
-{% block content %}
-<div class="sidebar">
-        <div class="sidebar-header">师资队伍</div>
-        <ul class="sidebar-menu">
-            <li class="menu-item">
-                
-                全职教师
-                
-            </li>
-            <li class="menu-item">
-                
-                兼职教师
-                
-            </li>
-        </ul>
-</div>
+{% block title %}全职教师{% endblock %}
+{% block menu_name%}师资队伍{% endblock %}
+{% block menu_content %} 
+    <li class="menu-item"><a href="{{ url_for('team1.page1') }}">全职教师</a></li>
+    <li class="menu-item"><a href="{{ url_for('team1.page1') }}">兼职教师</a></li>
+{% endblock %}
 
-<div class="main-content">
+{% block main_content %}
+    <div class="main-content">
     <h3>全职教师</h3>
     <hr class="sep-line">
 
@@ -42,5 +33,5 @@
             </div>
         </div>
     {% endfor %}
-    
+    </div>
 {% endblock %}

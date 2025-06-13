@@ -1,0 +1,32 @@
+{% extends 'university_basic.html' %}
+
+{% block title %}论文uwu{% endblock %}
+
+{% block menu_name%}教学{% endblock %}
+{% block menu_content %} 
+    <li class="menu-item"><a href="{{ url_for('team1.page1') }}">成果</a></li>
+    <li class="menu-item"><a href="{{ url_for('team1.page1') }}">论文</a></li>
+    <li class="menu-item"><a href="{{ url_for('team1.page1') }}">教材</a></li>
+    <li class="menu-item"><a href="{{ url_for('team1.page1') }}">教改</a></li>
+{% endblock %}
+
+{% block main_content %}
+    <div class="main-content">
+        <h3>论文</h3>
+        <hr class="sep-line">
+
+        {% for paper in paperInfo %} 
+            <div class="teacher-card">
+                <img class="teacher-photo" src="../static/images/classExample.jpg">
+                <div class="teacher-information">
+                    <h3>{{ paper.title }}</h3>
+                    <span>作者:</span>
+                    <span>{{ paper.name}}</span>
+                    <br>
+                
+                    <hr class="teacher-line">
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

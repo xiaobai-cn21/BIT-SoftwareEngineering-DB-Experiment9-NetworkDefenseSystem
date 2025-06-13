@@ -1,39 +1,39 @@
-{% extends 'header.html' %}
+{% extends 'university_basic.html' %}
 
-{% block content %}
-<div class="sidebar">
-        <div class="sidebar-header">教学科研</div>
-        <ul class="sidebar-menu">
-            <li class="menu-item">
-                教学工作
-            </li>
-            <li class="menu-item">
-                科研工作            
-            </li>
-        </ul>
-</div>
+{% block title %}{% endblock %}
 
-<div class="main-content">
-    <h3>教学工作</h3>
-    <hr class="sep-line">
-
-    {% for course in courseInfo %} 
-        <div class="teacher-card">
-            <img class="teacher-photo" src="../static/images/classExample.jpg">
-            <div class="teacher-information">
-                <h3>{{ course.course_name }}</h3>
-                <span>课程编号:</span>
-                <span>{{ course.course_id }}</span>
-                <br>
-                <span>学生层次:</span>
-                <span>{{ course.level }}</span>
-                <br>
-
-                <span>教师:</span>
-                <span>{{course.teachers}}</span>
-                <br>
-                <hr class="teacher-line">
-            </div>
-        </div>
-    {% endfor %}
+{% block menu_name%}教学科研{% endblock %}
+{% block menu_content %} 
+    <li class="menu-item"><a href="{{ url_for('team1.page7') }}">教学工作</a></li>
+    <li class="menu-item"><a href="{{ url_for('team1.page8') }}">科研工作</a></li>
 {% endblock %}
+
+{% block main_content %}
+    <div class="main-content">
+        <h3>教学工作</h3>
+        <hr class="sep-line">
+
+        {% for course in courseInfo %} 
+            <div class="teacher-card">
+                <img class="teacher-photo" src="../static/images/classExample.jpg">
+                <div class="teacher-information">
+                    <h3>{{ course.course_name }}</h3>
+                    <span>课程编号:</span>
+                    <span>{{ course.course_id }}</span>
+                    <br>
+                    <span>学生层次:</span>
+                    <span>{{ course.level }}</span>
+                    <br>
+
+                    <span>教师:</span>
+                    <span>{{course.teachers}}</span>
+                    <br>
+                    <hr class="teacher-line">
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+
+

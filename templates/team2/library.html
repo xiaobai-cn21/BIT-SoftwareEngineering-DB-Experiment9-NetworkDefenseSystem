@@ -177,7 +177,7 @@
                             <div class="book-title">轻量级JavaEE 企业应用实战（第3版）——Struts2+Spring3+Hibernate整合开发</div>
                             <div class="book-meta">
                                 <span class="book-id">图书编号 B001</span>
-                                <span class="status-available">可借阅</span>
+                                <span class="status-available">已借出</span>
                             </div>
                             <button class="borrow-btn" data-id="B001" data-title="轻量级JavaEE 企业应用实战（第3版）——Struts2+Spring3+Hibernate整合开发">借阅图书</button>
                         </div>
@@ -190,7 +190,7 @@
                             <div class="book-title">Java类库查询辞典</div>
                             <div class="book-meta">
                                 <span class="book-id">图书编号 B002</span>
-                                <span class="status-available">可借阅</span>
+                                <span class="status-available">已借出</span>
                             </div>
                             <button class="borrow-btn" data-id="B002" data-title="Java类库查询辞典">借阅图书</button>
                         </div>
@@ -202,7 +202,7 @@
                             <div class="book-title">J2EE服务器端 高级编程</div>
                             <div class="book-meta">
                                  <span class="book-id">图书编号 B003</span>
-                                <span class="status-available">可借阅</span>
+                                <span class="status-available">已借出</span>
                             </div>
                             <button class="borrow-btn" data-id="B003" data-title="J2EE服务器端 高级编程">借阅图书</button>
                         </div>
@@ -397,7 +397,7 @@
 
                 books.forEach(function (book) {
                     const statusClass = book.is_borrowed === 'true' ? 'status-borrowed' : 'status-available';
-                    const statusText = book.is_borrowed === 'true' ? '已借出' : '可借阅';
+                    const statusText = book.is_borrowed ? '已借出' : '可借阅';
                     const buttonClass = book.is_borrowed === 'true' ? 'borrow-btn disabled' : 'borrow-btn';
                     const buttonText = book.is_borrowed === 'true' ? '不可借' : '借阅';
                     const disabledAttr = book.is_borrowed === 'true' ? 'disabled' : '';
@@ -462,7 +462,7 @@
                 }
             }},
                     error: function () {
-                        alert('请求失败，请重试');
+                        alert('该图书已借出，请借阅其他书籍');
                         buttonElement.text(originalText).prop('disabled', false);
                    }
                 });}

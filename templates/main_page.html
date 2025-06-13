@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html lang="zh">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/team1.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
-</head>
-<body>
-    {% include 'header.html' %}
+{% extends 'header.html' %}
 
+{% block content %}
     <div class="presentation-container">
         <div class="presentation-card">
             <div class="presentation-title">研究方向</div> 
@@ -187,6 +178,7 @@
     <footer>
         <p>© db_7 | 研究所网站前端展示部分</p>
     </footer>
-</body>
-</html>
+{% endblock %}
+
+
 

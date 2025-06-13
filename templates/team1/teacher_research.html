@@ -1,33 +1,29 @@
-{% extends 'header.html' %}
+{% extends 'university_basic.html' %}
 
-{% block content %}
-<div class="sidebar">
-        <div class="sidebar-header">教学科研</div>
-        <ul class="sidebar-menu">
-            <li class="menu-item">
-                教学工作
-            </li>
-            <li class="menu-item">
-                科研工作            
-            </li>
-        </ul>
-</div>
+{% block title %}{% endblock %}
 
-<div class="main-content">
-    <h3>科研工作</h3>
-    <hr class="sep-line">
+{% block menu_name%}教学科研{% endblock %}
+{% block menu_content %} 
+    <li class="menu-item"><a href="{{ url_for('team1.page7') }}">教学工作</a></li>
+    <li class="menu-item"><a href="{{ url_for('team1.page8') }}">科研工作</a></li>
+{% endblock %}
 
-    {% for research in queryInfo %} 
-        <div class="teacher-card">
-            <img class="teacher-photo" src="../static/images/teacherExample.jpg">
-            <div class="teacher-information">
-                <h3>{{ research.project_id }}</h3>
-                <span>教师:</span>
-                <span>{{ research.name }}</span>
-                <br>
-                <hr class="teacher-line">
+{% block main_content %}
+    <div class="main-content">
+        <h3>科研工作</h3>
+        <hr class="sep-line">
+
+        {% for research in queryInfo %} 
+            <div class="teacher-card">
+                <img class="teacher-photo" src="../static/images/teacherExample.jpg">
+                <div class="teacher-information">
+                    <h3>{{ research.project_id }}</h3>
+                    <span>教师:</span>
+                    <span>{{ research.name }}</span>
+                    <br>
+                    <hr class="teacher-line">
+                </div>
             </div>
-        </div>
-    {% endfor %}
-    
+        {% endfor %}
+    </div>
 {% endblock %}
